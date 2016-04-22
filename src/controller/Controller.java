@@ -11,5 +11,8 @@ public class Controller
 		baseFrame = new DrawingFrame(this);
 	}
 	
-	public void start(){}
+	public void start()
+	{
+		
+	}
 }
