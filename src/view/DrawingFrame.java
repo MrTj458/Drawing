@@ -16,6 +16,9 @@ public class DrawingFrame extends JFrame
 		setupFrame();
 	}
 	
+	/**
+	 * Sets all of the variables for the frame.
+	 */
 	private void setupFrame()
 	{
 		this.setContentPane(drawingPanel);

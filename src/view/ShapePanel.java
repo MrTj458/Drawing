@@ -25,6 +25,9 @@ public class ShapePanel extends JPanel
 		polygonList = new ArrayList<Polygon>();
 	}
 	
+	/**
+	 * Adds a rectangle with a random position and size to the rectangle array list.
+	 */
 	public void addRectangle()
 	{
 		int xPosition = (int) (Math.random() * this.getWidth());
@@ -35,6 +38,9 @@ public class ShapePanel extends JPanel
 		rectangleList.add(new Rectangle(xPosition, yPosition, width, height));
 	}
 	
+	/**
+	 * Adds a square with a random position and size to the square array list.
+	 */
 	public void addSquare()
 	{
 		int xPosition = (int) (Math.random() * this.getWidth());
@@ -44,6 +50,9 @@ public class ShapePanel extends JPanel
 		squareList.add(new Rectangle(xPosition, yPosition, size, size));
 	}
 	
+	/**
+	 * Adds a ellipse with a random position and size to the ellipse array list.
+	 */
 	public void addEllipse()
 	{
 		int xPosition = (int) (Math.random() * this.getWidth());
@@ -54,6 +63,9 @@ public class ShapePanel extends JPanel
 		ellipseList.add(new Ellipse2D.Double(xPosition, yPosition, width, height));
 	}
 	
+	/**
+	 * Adds a circle with a random position and size to the circle array list.
+	 */
 	public void addCircle()
 	{
 		int xPosition = (int) (Math.random() * this.getWidth());
@@ -63,6 +75,9 @@ public class ShapePanel extends JPanel
 		circleList.add(new Ellipse2D.Double(xPosition, yPosition, size, size));
 	}
 	
+	/**
+	 * Adds a triangle connecting 3 random positions to the triangle array list.
+	 */
 	public void addTriangle()
 	{
 		int[] xPoints = {(int) (Math.random() * this.getWidth()), (int) (Math.random() * this.getWidth()), (int) (Math.random() * this.getWidth())};
@@ -71,6 +86,9 @@ public class ShapePanel extends JPanel
 		triangleList.add(new Polygon(xPoints, yPoints, 3));
 	}
 	
+	/**
+	 * Adds a polygon with a random number of sides and random positions to the polygon array list.
+	 */
 	public void addPolygon()
 	{
 		int numberOfSides = (int) (Math.random() * 9) + 3;
@@ -86,6 +104,9 @@ public class ShapePanel extends JPanel
 		polygonList.add(new Polygon(xPoints, yPoints, numberOfSides));
 	}
 	
+	/**
+	 * removes all objects from all of the array lists.
+	 */
 	public void clearScreen()
 	{
 		rectangleList.clear();
@@ -96,6 +117,9 @@ public class ShapePanel extends JPanel
 		polygonList.clear();
 	}
 	
+	/**
+	 * Draws all of the objects in the array lists onto the screen.
+	 */
 	@Override
 	protected void paintComponent(Graphics currentGraphics)
 	{

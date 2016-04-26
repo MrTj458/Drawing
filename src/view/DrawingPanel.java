@@ -37,8 +37,9 @@ public class DrawingPanel extends JPanel
 		//Base Components
 		this.baseController = baseController;
 		this.baseLayout = new SpringLayout();
+		
+		//Panels
 		shapePanel = new ShapePanel();
-		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -100, SpringLayout.SOUTH, this);
 		
 		//Buttons
 		addRectangleButton = new JButton("Add a Rectangle");
@@ -57,6 +58,9 @@ public class DrawingPanel extends JPanel
 		setupListeners();
 	}
 	
+	/**
+	 * Adds components to the panel.
+	 */
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
@@ -71,6 +75,9 @@ public class DrawingPanel extends JPanel
 		this.add(clearScreenButton);
 	}
 	
+	/**
+	 * Moves components to their correct positions.
+	 */
 	private void setupLayout()
 	{
 		baseLayout.putConstraint(SpringLayout.WEST, addRectangleButton, 10, SpringLayout.WEST, this);
@@ -80,6 +87,7 @@ public class DrawingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.NORTH, addTriangleButton, 0, SpringLayout.NORTH, addPolygonButton);
 		baseLayout.putConstraint(SpringLayout.WEST, addTriangleButton, 6, SpringLayout.EAST, addPolygonButton);
 		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -50, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -100, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, addCircleButton, 0, SpringLayout.NORTH, addRectangleButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, clearScreenButton, 0, SpringLayout.NORTH, addTriangleButton);
 		baseLayout.putConstraint(SpringLayout.EAST, clearScreenButton, -10, SpringLayout.EAST, this);
@@ -90,6 +98,9 @@ public class DrawingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, addEllipseButton, 6, SpringLayout.EAST, addSquareButton);
 	}
 	
+	/**
+	 * Adds listeners to components that need them.
+	 */
 	private void setupListeners()
 	{
 		addRectangleButton.addActionListener(new ActionListener()
@@ -156,15 +167,19 @@ public class DrawingPanel extends JPanel
 		});
 	}
 	
+	/**
+	 * Paints objects to the screen.
+	 * @param currentGraphics
+	 */
 	@Override
 	protected void paintComponent(Graphics currentGraphics)
 	{
 		super.paintComponent(currentGraphics);
 		Graphics2D mainGraphics = (Graphics2D) currentGraphics;
 		
-//		mainGraphics.setStroke(new BasicStroke(5));
-//		mainGraphics.setColor(Color.orange);
-//		mainGraphics.drawRect(50, 70, 200, 400);
+		mainGraphics.setStroke(new BasicStroke(5));
+		mainGraphics.setColor(Color.orange);
+		mainGraphics.drawRect(50, 70, 200, 400);
 		
 		
 		for(Rectangle current : rectangleList)
