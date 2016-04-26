@@ -21,6 +21,7 @@ public class ShapePanel extends JPanel
 		squareList = new ArrayList<Rectangle>();
 		ellipseList = new ArrayList<Ellipse2D>();
 		circleList = new ArrayList<Ellipse2D>();
+		triangleList = new ArrayList<Polygon>();
 	}
 	
 	public void addRectangle()
@@ -59,6 +60,14 @@ public class ShapePanel extends JPanel
 		int size = (int) (Math.random() * 100);
 		
 		circleList.add(new Ellipse2D.Double(xPosition, yPosition, size, size));
+	}
+	
+	public void addTriangle()
+	{
+		int[] xPoints = {(int) (Math.random() * 150), (int) (Math.random() * 150), (int) (Math.random() * 150)};
+		int[] yPoints = {(int) (Math.random() * 150), (int) (Math.random() * 150), (int) (Math.random() * 150)};
+		
+		triangleList.add(new Polygon(xPoints, yPoints, 3));
 	}
 	
 	@Override
