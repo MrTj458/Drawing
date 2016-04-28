@@ -29,9 +29,6 @@ public class DrawingPanel extends JPanel
 	private JButton addPolygonButton;
 	private JButton clearScreenButton;
 	
-	//Lists
-	private ArrayList<Rectangle> rectangleList;
-	
 	public DrawingPanel(Controller baseController)
 	{
 		//Base Components
@@ -49,9 +46,6 @@ public class DrawingPanel extends JPanel
 		addTriangleButton = new JButton("Add a Triangle");
 		addPolygonButton = new JButton("Add a Polygon");
 		clearScreenButton = new JButton("Clear the Screen");
-		
-		//Lists
-		rectangleList = new ArrayList<Rectangle>();
 		
 		setupPanel();
 		setupLayout();
@@ -165,33 +159,5 @@ public class DrawingPanel extends JPanel
 				repaint();
 			}
 		});
-	}
-	
-	/**
-	 * Paints objects to the screen.
-	 * @param currentGraphics
-	 */
-	@Override
-	protected void paintComponent(Graphics currentGraphics)
-	{
-		super.paintComponent(currentGraphics);
-		Graphics2D mainGraphics = (Graphics2D) currentGraphics;
-		
-		mainGraphics.setStroke(new BasicStroke(5));
-		mainGraphics.setColor(Color.orange);
-		mainGraphics.drawRect(50, 70, 200, 400);
-		
-		
-		for(Rectangle current : rectangleList)
-		{
-			int red = (int) (Math.random() * 256);
-			int green = (int) (Math.random() * 256);
-			int blue = (int) (Math.random() * 256);
-			int stroke = (int) (Math.random() * 20);
-			
-			mainGraphics.setStroke(new BasicStroke(stroke));
-			mainGraphics.setColor(new Color(red, green, blue));
-			mainGraphics.draw(current);
-		}
 	}
 }
