@@ -19,6 +19,7 @@ public class DrawingPanel extends JPanel
 	
 	//Panels
 	private ShapePanel shapePanel;
+	private GraphPanel graphPanel;
 	
 	//Buttons
 	private JButton addRectangleButton;
@@ -28,6 +29,7 @@ public class DrawingPanel extends JPanel
 	private JButton addTriangleButton;
 	private JButton addPolygonButton;
 	private JButton clearScreenButton;
+	private JButton redrawGraphButton;
 	
 	public DrawingPanel(Controller baseController)
 	{
@@ -37,6 +39,7 @@ public class DrawingPanel extends JPanel
 		
 		//Panels
 		shapePanel = new ShapePanel();
+		graphPanel = new GraphPanel();
 		
 		//Buttons
 		addRectangleButton = new JButton("Add a Rectangle");
@@ -46,6 +49,7 @@ public class DrawingPanel extends JPanel
 		addTriangleButton = new JButton("Add a Triangle");
 		addPolygonButton = new JButton("Add a Polygon");
 		clearScreenButton = new JButton("Clear the Screen");
+		redrawGraphButton = new JButton("Redraw Graph");
 		
 		setupPanel();
 		setupLayout();
@@ -67,6 +71,8 @@ public class DrawingPanel extends JPanel
 		this.add(addTriangleButton);
 		this.add(addPolygonButton);
 		this.add(clearScreenButton);
+		this.add(graphPanel);
+		this.add(redrawGraphButton);
 	}
 	
 	/**
@@ -78,10 +84,18 @@ public class DrawingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.SOUTH, addRectangleButton, -10, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 50, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 50, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, addTriangleButton, 0, SpringLayout.NORTH, addPolygonButton);
-		baseLayout.putConstraint(SpringLayout.WEST, addTriangleButton, 6, SpringLayout.EAST, addPolygonButton);
 		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -50, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -100, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, graphPanel, 450, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -350, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, redrawGraphButton, 0, SpringLayout.NORTH, addRectangleButton);
+		baseLayout.putConstraint(SpringLayout.EAST, redrawGraphButton, 0, SpringLayout.EAST, clearScreenButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, addTriangleButton, 0, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, addTriangleButton, 140, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, graphPanel, 50, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, addPolygonButton, 0, SpringLayout.NORTH, addTriangleButton);
+		baseLayout.putConstraint(SpringLayout.WEST, addPolygonButton, 0, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, graphPanel, -100, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, graphPanel, -50, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, addCircleButton, 0, SpringLayout.NORTH, addRectangleButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, clearScreenButton, 0, SpringLayout.NORTH, addTriangleButton);
 		baseLayout.putConstraint(SpringLayout.EAST, clearScreenButton, -10, SpringLayout.EAST, this);
@@ -102,7 +116,7 @@ public class DrawingPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				shapePanel.addRectangle();
-				repaint();
+				shapePanel.repaint();
 			}
 		});
 		
@@ -111,7 +125,7 @@ public class DrawingPanel extends JPanel
 			public void actionPerformed(ActionEvent Click)
 			{
 				shapePanel.addSquare();
-				repaint();
+				shapePanel.repaint();
 			}
 		});
 		
@@ -120,7 +134,7 @@ public class DrawingPanel extends JPanel
 			public void actionPerformed(ActionEvent Click)
 			{
 				shapePanel.addEllipse();
-				repaint();
+				shapePanel.repaint();
 			}
 		});
 		
@@ -129,7 +143,7 @@ public class DrawingPanel extends JPanel
 			public void actionPerformed(ActionEvent Click)
 			{
 				shapePanel.addCircle();
-				repaint();
+				shapePanel.repaint();
 			}
 		});
 		
@@ -138,7 +152,7 @@ public class DrawingPanel extends JPanel
 			public void actionPerformed(ActionEvent Click)
 			{
 				shapePanel.addTriangle();
-				repaint();
+				shapePanel.repaint();
 			}
 		});
 		
@@ -147,7 +161,7 @@ public class DrawingPanel extends JPanel
 			public void actionPerformed(ActionEvent Click)
 			{
 				shapePanel.addPolygon();
-				repaint();
+				shapePanel.repaint();
 			}
 		});
 		
@@ -156,7 +170,16 @@ public class DrawingPanel extends JPanel
 			public void actionPerformed(ActionEvent Click)
 			{
 				shapePanel.clearScreen();
-				repaint();
+				shapePanel.repaint();
+			}
+		});
+		
+		redrawGraphButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent Click)
+			{
+				graphPanel.setupList();
+				graphPanel.repaint();
 			}
 		});
 	}
