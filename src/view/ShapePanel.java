@@ -14,6 +14,7 @@ public class ShapePanel extends JPanel
 	private ArrayList<Ellipse2D> circleList;
 	private ArrayList<Polygon> triangleList;
 	private ArrayList<Polygon> polygonList;
+	private ArrayList<Object> spamList;
 	
 	public ShapePanel()
 	{
@@ -23,6 +24,7 @@ public class ShapePanel extends JPanel
 		circleList = new ArrayList<Ellipse2D>();
 		triangleList = new ArrayList<Polygon>();
 		polygonList = new ArrayList<Polygon>();
+		spamList = new ArrayList<Object>();
 	}
 	
 	/**
@@ -115,6 +117,52 @@ public class ShapePanel extends JPanel
 		circleList.clear();
 		triangleList.clear();
 		polygonList.clear();
+		spamList.clear();
+	}
+	
+	public void spam()
+	{
+		int numObjects = (int) (Math.random() * 5000);
+		
+		for(int index = 0; index < numObjects; index++)
+		{
+			int xPosition = (int) (Math.random() * this.getWidth());
+			int yPosition = (int) (Math.random() * this.getHeight());
+			int width = (int) (Math.random() * (this.getWidth() / 2));
+			int height = (int) (Math.random() * (this.getHeight() / 2));
+			
+			spamList.add(new Rectangle(xPosition, yPosition, width, height));
+			
+			xPosition = (int) (Math.random() * this.getWidth());
+			yPosition = (int) (Math.random() * this.getHeight());
+			width = (int) (Math.random() * (this.getWidth() / 2));
+			height = (int) (Math.random() * (this.getWidth() / 2));
+			
+			spamList.add(new Ellipse2D.Double(xPosition, yPosition, width, height));
+			
+			xPosition = (int) (Math.random() * this.getWidth());
+			yPosition = (int) (Math.random() * this.getHeight());
+			int size = (int) (Math.random() * (this.getHeight() / 2));
+			
+			spamList.add(new Ellipse2D.Double(xPosition, yPosition, size, size));
+			
+			int[] xPoints = {(int) (Math.random() * this.getWidth()), (int) (Math.random() * this.getWidth()), (int) (Math.random() * this.getWidth())};
+			int[] yPoints = {(int) (Math.random() * this.getHeight()), (int) (Math.random() * this.getHeight()), (int) (Math.random() * this.getHeight())};
+			
+			spamList.add(new Polygon(xPoints, yPoints, 3));
+			
+			int numberOfSides = (int) (Math.random() * 9) + 3;
+			int[] x2Points = new int[numberOfSides];
+			int[] y2Points = new int[numberOfSides];
+			
+			for(int side = 0; side < numberOfSides; side++)
+			{
+				x2Points[side] = (int) (Math.random() * this.getWidth());
+				y2Points[side] = (int) (Math.random() * this.getHeight());
+			}
+			
+			spamList.add(new Polygon(x2Points, y2Points, numberOfSides));
+		}
 	}
 	
 	/**
@@ -132,6 +180,7 @@ public class ShapePanel extends JPanel
 		drawShapes(mainGraphics, circleList);
 		drawShapes(mainGraphics, triangleList);
 		drawShapes(mainGraphics, polygonList);
+		drawShapes(mainGraphics, spamList);
 	}
 
 	private void drawShapes(Graphics2D mainGraphics, ArrayList shapes)

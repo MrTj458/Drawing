@@ -30,6 +30,7 @@ public class DrawingPanel extends JPanel
 	private JButton addPolygonButton;
 	private JButton clearScreenButton;
 	private JButton redrawGraphButton;
+	private JButton spamButton;
 	
 	public DrawingPanel(Controller baseController)
 	{
@@ -50,6 +51,7 @@ public class DrawingPanel extends JPanel
 		addPolygonButton = new JButton("Add a Polygon");
 		clearScreenButton = new JButton("Clear the Screen");
 		redrawGraphButton = new JButton("Redraw Graph");
+		spamButton = new JButton("Spam");
 		
 		setupPanel();
 		setupLayout();
@@ -73,6 +75,7 @@ public class DrawingPanel extends JPanel
 		this.add(clearScreenButton);
 		this.add(graphPanel);
 		this.add(redrawGraphButton);
+		this.add(spamButton);
 	}
 	
 	/**
@@ -81,23 +84,23 @@ public class DrawingPanel extends JPanel
 	private void setupLayout()
 	{
 		baseLayout.putConstraint(SpringLayout.WEST, addRectangleButton, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, addTriangleButton, 6, SpringLayout.EAST, spamButton);
 		baseLayout.putConstraint(SpringLayout.SOUTH, addRectangleButton, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, clearScreenButton, 0, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 50, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, addTriangleButton, 0, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, graphPanel, -18, SpringLayout.NORTH, addRectangleButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, addPolygonButton, 0, SpringLayout.NORTH, addTriangleButton);
+		baseLayout.putConstraint(SpringLayout.WEST, addPolygonButton, 6, SpringLayout.EAST, addTriangleButton);
 		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 50, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, graphPanel, 479, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, graphPanel, 50, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, graphPanel, -50, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -6, SpringLayout.NORTH, graphPanel);
 		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -50, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, graphPanel, 450, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -350, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, redrawGraphButton, 0, SpringLayout.NORTH, addRectangleButton);
 		baseLayout.putConstraint(SpringLayout.EAST, redrawGraphButton, 0, SpringLayout.EAST, clearScreenButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, addTriangleButton, 0, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, addTriangleButton, 140, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, graphPanel, 50, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, addPolygonButton, 0, SpringLayout.NORTH, addTriangleButton);
-		baseLayout.putConstraint(SpringLayout.WEST, addPolygonButton, 0, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, graphPanel, -100, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, graphPanel, -50, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, addCircleButton, 0, SpringLayout.NORTH, addRectangleButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, clearScreenButton, 0, SpringLayout.NORTH, addTriangleButton);
 		baseLayout.putConstraint(SpringLayout.EAST, clearScreenButton, -10, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, addCircleButton, 6, SpringLayout.EAST, addEllipseButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, addSquareButton, 0, SpringLayout.NORTH, addRectangleButton);
@@ -180,6 +183,15 @@ public class DrawingPanel extends JPanel
 			{
 				graphPanel.setupList();
 				graphPanel.repaint();
+			}
+		});
+		
+		spamButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent Click)
+			{
+				shapePanel.spam();
+				shapePanel.repaint();
 			}
 		});
 	}
